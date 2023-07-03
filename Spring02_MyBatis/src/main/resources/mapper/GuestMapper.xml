@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 
+	   밑의 namespace = sql문이 동작하는 파일이 들어있는 폴더를 지정 해주면 된다. 
+ -->
+<mapper namespace="guest">
+	
+	<select id="getData" parameterType="int" resultType="guestDto">
+		select num, writer, content, pwd, regdate
+		from board_guest
+		where num=#{num}
+	</select>
+
+	<update id="update" parameterType="guestDto">
+		update board_guest
+		set writer=#{writer}, content=#{content}
+		where num=#{num} AND pwd=#{pwd}
+	</update>
+
+	<delete id="delete" parameterType="guestDto">
+		delete from board_guest
+		where num=#{num} AND pwd=#{pwd}
+	</delete>
+	
+	<select id="getList" resultType="guestDto">
+		select num, writer, content, pwd, regdate
+		from board_guest
+		order by num asc
+	</select>
+
+	 <insert id="insert" parameterType="guestDto">
+	 	INSERT INTO board_guest
+	 	(num, writer, content, pwd, regdate)
+	 	<!-- 
+	 		 밑의 #{writer, content, pwd}는 GuestDto에 필드명을 
+	 		 그대로 써주면 자동으로 binding 해준다. 
+	 	-->
+	 	VALUES(board_guest_seq.NEXTVAL, #{writer}, #{content}, #{pwd}, sysdate)
+	 </insert>	
+</mapper>
