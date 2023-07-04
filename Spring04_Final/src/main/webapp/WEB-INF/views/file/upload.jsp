@@ -11,8 +11,8 @@
 	<div class="container">
 		<h3>Alert</h3>
 		<p>
-			<strong>${dto.orgFileName }</strong> 파일이 업로드 되었습니다.
-			<a href="${pageContext.request.contextPath}/file/list">확인</a>
+			<strong>${dto.orgFileName }</strong> 이미지가 업로드 되었습니다!
+			<a href="${pageContext.request.contextPath}/gallery/list">확인</a>
 		</p>
 	</div>
 </body>
