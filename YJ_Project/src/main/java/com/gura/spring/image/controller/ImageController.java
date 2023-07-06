@@ -1,4 +1,4 @@
-package com.gura.spring04.gallery.controller;
+package com.gura.spring.image.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gura.spring04.gallery.dto.GalleryDto;
-import com.gura.spring04.gallery.service.GalleryService;
+import com.gura.spring.image.dto.ImageDto;
+import com.gura.spring.image.service.ImageService;
 
 @Controller
-public class GalleryController {
+public class ImageController {
 	
 	@Autowired
-	private GalleryService service;
+	private ImageService service;
 	
-	// gallery 게시글의 num이 parameter get 방식으로 넘어온다.
+	// Image 게시글의 num이 parameter get 방식으로 넘어온다.
 	// detail 페이지
-	@RequestMapping(value="/gallery/detail", method = RequestMethod.GET)
+	@RequestMapping(value="/image/detail", method = RequestMethod.GET)
 	public ModelAndView detail(ModelAndView mView, int num) {
 		// 갤러리 detail 페이지에 필요한 data를 num으로 가져와, ModelAndView에 저장
 		service.getDetail(mView, num);
-		mView.setViewName("gallery/detail");
+		mView.setViewName("image/detail");
 		
 		return mView;
 	}
 	
-	@RequestMapping("/gallery/list")
+	@RequestMapping("/image/list")
 	public String getList(HttpServletRequest request) {
 		
 		service.getList(request);
 		
-		return "gallery/list";
+		return "image/list";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/gallery/ajax_upload")
+	@RequestMapping(method=RequestMethod.POST, value="/image/ajax_upload")
 	@ResponseBody
-	public Map<String, Object> ajaxUpload(GalleryDto dto, HttpServletRequest request){
+	public Map<String, Object> ajaxUpload(ImageDto dto, HttpServletRequest request){
 		// 서비스를 이용해서 업로드된 이미지를 저장하고
 		service.saveImage(dto, request);
 		// {"isSuccess":true}] 형식의 json 문자열 응답
@@ -51,35 +51,21 @@ public class GalleryController {
 		return map;
 	}
 	
-	// gallery 사진 업로드 form 페이지로 이동
-	@RequestMapping("/gallery/upload_form3")
-	public String uploadForm3() {
-	      
-	   return "gallery/upload_form3";
-	}
-	
-	// gallery 사진 업로드 form 페이지로 이동
-	@RequestMapping("/gallery/upload_form2")
-	public String uploadForm2() {
-	      
-	   return "gallery/upload_form2";
-	}
-	
-	// gallery 사진 업로드 form 페이지로 이동
-	@RequestMapping("/gallery/upload_form")
+	// image 사진 업로드 form 페이지로 이동
+	@RequestMapping("/image/upload_form")
 	public String uploadForm() {
 	      
-	   return "gallery/upload_form";
+	   return "image/upload_form";
 	}
 	
-	// gallery 사진 업로드 & DB 저장
-	@RequestMapping(method=RequestMethod.POST, value="/gallery/upload")
-	public String upload(GalleryDto dto, HttpServletRequest request) {
+	// image 사진 업로드 & DB 저장
+	@RequestMapping(method=RequestMethod.POST, value="/image/upload")
+	public String upload(ImageDto dto, HttpServletRequest request) {
 	   // form에서 dto로 데이터 받아옴
 	   // dto : caption, MultipartFile image를 갖고 있다.
 	   // request : imagePath 만드는데 사용, session 영역의 id 가져오는데 사용
 	   service.saveImage(dto, request); 
-	   return "gallery/upload";
+	   return "image/upload";
 	}
 		
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="image">
+   <select id="getList" parameterType="imageDto" resultType="imageDto">
+      SELECT *
+      FROM   
+         (SELECT result1.*, ROWNUM as rnum
+         FROM
+            (SELECT num, price, writer, clothesize, caption, imagePath, regdate
+            FROM board_image
+            ORDER BY num DESC) result1)
+      WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+   </select>
+   <select id="getCount" resultType="int">
+      SELECT NVL(MAX(ROWNUM), 0)
+      FROM board_image
+   </select>
+   <insert id="insert" parameterType="imageDto">
+      INSERT INTO board_image
+      (num, price, writer, clothesize, caption, imagePath, regdate)
+      VALUES(board_image_seq.NEXTVAL, #{price}, #{writer}, #{clothesize}, #{caption}, #{imagePath}, SYSDATE)
+   </insert>
+   <select id="getData" parameterType="int" resultType="imageDto">
+      SELECT *
+      FROM
+         (SELECT num, price, writer, clothesize, caption, imagePath, regdate, 
+            LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum,
+            LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum
+         FROM board_image
+         ORDER BY num DESC)
+      WHERE num = #{num}
+   </select>
+</mapper>
+
