@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/image/upload_form3.jsp</title>
+<title>/views/image2/upload_form3.jsp</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 <style>
 	h1{
@@ -68,7 +68,7 @@
 		   	</div>
 	   	</a>
 	   	<button class="btn btn-dark btn-lg" id="submitBtn">업로드</button>
-	   	<button class="btn btn-dark btn-lg" type="button"><a href="${pageContext.request.contextPath }/image/list">목록으로 가기</a></button>
+	   	<button class="btn btn-dark btn-lg" type="button"><a href="${pageContext.request.contextPath }/image2/list">목록으로 가기</a></button>
 	</div>
 	<script>
 		//업로드 버튼을 눌렀을 때 
@@ -98,7 +98,7 @@
 				fetch() 함수를 호출하면서 method:"post", body:FormData 객체를 전달하면
 				<form  method="post" enctype="multipart/form-data"> 폼을 전송한것과 같다
 			*/
-			fetch("${pageContext.request.contextPath }/image/ajax_upload", {
+			fetch("${pageContext.request.contextPath }/image2/ajax_upload", {
 				method:"post",
 				body:data
 			})

@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>/views/users/loginform.jsp</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+<style>
+	h1{
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -19,13 +25,13 @@
 					<input type="hidden" name="url" value="${param.url }"/>
 				</c:otherwise>
 			</c:choose>
-			<div>
-				<label for="id">아이디</label>
-				<input type="text" name="id" id="id"/>
+			<div class="mb-2">
+				<label class="form-label" for="id">아이디</label>
+				<input class="form-control" type="text" name="id" id="id"/>
 			</div>
-			<div>
-				<label for="pwd">비밀번호</label>
-				<input type="password" name="pwd" id="pwd"/>
+			<div class="mb-2">
+				<label class="form-label" for="pwd">비밀번호</label>
+				<input class="form-control" type="password" name="pwd" id="pwd"/>
 			</div>
 			<button type="submit">로그인</button>
 		</form>

@@ -26,7 +26,7 @@ public class ImageDaoImpl implements ImageDao{
 
 		return session.selectOne("image.getData", num);
 	}
-
+	
 	@Override
 	public void delete(int num) {
 		session.delete("image.delete", num);
@@ -48,5 +48,6 @@ public class ImageDaoImpl implements ImageDao{
 	public void update(ImageDto dto) {
 		session.update("image.update", dto);
 		
-	} 
+	}
+ 
 }

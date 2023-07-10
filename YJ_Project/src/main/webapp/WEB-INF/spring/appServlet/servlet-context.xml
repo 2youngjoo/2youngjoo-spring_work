@@ -58,6 +58,12 @@
 			<exclude-mapping path="/image/detail"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/image2/*"/>
+			<exclude-mapping path="/image2/list"/>
+			<exclude-mapping path="/image2/detail"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 	<!-- 

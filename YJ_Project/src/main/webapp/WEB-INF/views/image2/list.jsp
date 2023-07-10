@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/image/list.jsp</title>
+<title>/image2/list.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <style>
    /* card 이미지 부모요소의 높이 지정 */
@@ -49,9 +49,9 @@
       }
       
       h1{
-		text-align: center;
-		background-color: grey;
-		color: white;
+      	text-align: center;
+      	background-color: grey;
+      	color: white;
       }
       .color-swatches {
 	  display: flex;
@@ -64,7 +64,6 @@
 	  border: 1px solid #000;
 	  cursor: pointer;
 	  }
-	  
 </style>
 </head>
 <body>
@@ -84,7 +83,7 @@
       <c:forEach var="tmp" items="${list }">
          <div class="col-sm-6 col-md-4 col-lg-3">
                <div class="card mb-3">
-                  <a href="${pageContext.request.contextPath}/image/detail?num=${tmp.num}">
+                  <a href="${pageContext.request.contextPath}/image2/detail?num=${tmp.num}">
                         <div class="img-wrapper">
                            <img class="card-img-top" src="${pageContext.request.contextPath }${tmp.imagePath}" />
                         </div>
@@ -110,7 +109,7 @@
       <c:choose>
          <c:when test="${startPageNum ne 1 }">
             <li class="page-item">
-                     <a class="page-link" href="${pageContext.request.contextPath}/image/list?pageNum=${startPageNum - 1}">Prev</a>
+                     <a class="page-link" href="${pageContext.request.contextPath}/image2/list?pageNum=${startPageNum - 1}">Prev</a>
                </li>
          </c:when>
          <c:otherwise>
@@ -123,12 +122,12 @@
          <c:choose>
             <c:when test="${i eq pageNum }">
                <li class="page-item active">
-                        <a class="page-link" href="${pageContext.request.contextPath}/image/list?pageNum=${i}">${i }</a>
+                        <a class="page-link" href="${pageContext.request.contextPath}/image2/list?pageNum=${i}">${i }</a>
                      </li>
             </c:when>
             <c:otherwise>
                <li class="page-item">
-                        <a class="page-link" href="${pageContext.request.contextPath}/image/list?pageNum=${i}">${i}</a>
+                        <a class="page-link" href="${pageContext.request.contextPath}/image2/list?pageNum=${i}">${i}</a>
                      </li>
             </c:otherwise>
          </c:choose>
@@ -136,7 +135,7 @@
       <c:choose>
          <c:when test="${endPageNum lt totalPageCount }">
             <li class="page-item">
-                     <a class="page-link" href="${pageContext.request.contextPath}/image/list?pageNum=${endPageNum + 1}">Next</a>
+                     <a class="page-link" href="${pageContext.request.contextPath}/image2/list?pageNum=${endPageNum + 1}">Next</a>
                </li>
          </c:when>
          <c:otherwise>

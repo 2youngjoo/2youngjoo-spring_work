@@ -1,4 +1,4 @@
-package com.gura.spring.image.service;
+package com.gura.spring.image2.service;
 
 import java.io.File;
 import java.net.URLEncoder;
@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gura.spring.image.dao.ImageDao;
-import com.gura.spring.image.dto.ImageDto;
+import com.gura.spring.image2.dao.Image2Dao;
+import com.gura.spring.image2.dto.Image2Dto;
 
 @Service
-public class ImageServiceImpl implements ImageService{
+public class Image2ServiceImpl implements Image2Service{
 
 	@Autowired
-	private ImageDao dao; 
+	private Image2Dao dao; 
 	
 	@Override
 	public void getList(HttpServletRequest request) {
@@ -44,13 +44,13 @@ public class ImageServiceImpl implements ImageService{
 	      //보여줄 페이지의 끝 ROWNUM
 	      int endRowNum = pageNum * PAGE_ROW_COUNT;
 	      
-	      //startRowNum 과 endRowNum  을 ImageDto 객체에 담고
-	      ImageDto dto = new ImageDto();
+	      //startRowNum 과 endRowNum  을 GalleryDto 객체에 담고
+	      Image2Dto dto = new Image2Dto();
 	      dto.setStartRowNum(startRowNum);
 	      dto.setEndRowNum(endRowNum);
 	      
 	      //ImageDao 객체를 이용해서 회원 목록을 얻어온다.
-	      List<ImageDto> list = dao.getList(dto);
+	      List<Image2Dto> list = dao.getList(dto);
 	      
 	      //하단 시작 페이지 번호 
 	      int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
@@ -67,7 +67,7 @@ public class ImageServiceImpl implements ImageService{
 	      }
 	      
 	      //request 영역에 담아주기
-	      request.setAttribute("list", list);   //gallery list
+	      request.setAttribute("list", list);   // 상품 list
 	      request.setAttribute("startPageNum", startPageNum);   //시작 페이지 번호
 	      request.setAttribute("endPageNum", endPageNum);   //끝 페이지 번호
 	      request.setAttribute("pageNum", pageNum);   //현재 페이지 번호
@@ -78,14 +78,14 @@ public class ImageServiceImpl implements ImageService{
 	@Override
 	public void getDetail(ModelAndView mView, int num) {
 		// dao로 해당 게시글 num에 해당하는 데이터(dto)를 가져온다.
-		ImageDto dto = dao.getData(num);
-		// ModelAndView 에 가져온 ImageDto를 담는다
+		Image2Dto dto = dao.getData(num);
+		// ModelAndView 에 가져온 Image2Dto를 담는다
 		mView.addObject("dto", dto);
 		
 	}
 
 	@Override
-	public void saveImage(ImageDto dto, HttpServletRequest request) {
+	public void saveImage(Image2Dto dto, HttpServletRequest request) {
 				  						
 	      //업로드된 파일의 정보를 가지고 있는 MultipartFile 객체의 참조값을 얻어오기
 	      MultipartFile image = dto.getImage();
@@ -125,7 +125,7 @@ public class ImageServiceImpl implements ImageService{
 	      //imagePath 만 저장해주면 됨
 	      dto.setImagePath("/resources/upload/" + saveFileName);
 	      
-	      //imageDao 를 이용해서 DB 에 저장하기
+	      //image2Dao 를 이용해서 DB 에 저장하기
 	      dao.insert(dto);
 		
 	}
@@ -137,10 +137,9 @@ public class ImageServiceImpl implements ImageService{
 	}
 
 	@Override
-	public void deleteImage(int num, ModelAndView mView) {
-		dao.delete(num);
+	public void deleteImage(int num, HttpServletRequest request) {
+		// TODO Auto-generated method stub
 		
 	}
-
 
 }
