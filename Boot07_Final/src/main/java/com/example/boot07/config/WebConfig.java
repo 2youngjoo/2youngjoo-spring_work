@@ -21,9 +21,11 @@ public class WebConfig implements WebMvcConfigurer {
       // 메소드의 인자로 전달되는 InteceptorRegistry 객체를 이용해서 Interceptor를 등록하면 된다.
 	  // 메소드 인자 패턴이  String....pattern 으로 되어있으면 인자를 , 붙여서 여러개를 한줄로 표현할 수 있다.
       registry.addInterceptor(loginInter)
-         .addPathPatterns("/users/*","/cafe/*")
+         .addPathPatterns("/users/*","/cafe/*","/file/*","/gallery/*")
          .excludePathPatterns("/users/loginform", "/users/login", "/users/signup_form", "/users/signup", 
-        		 "/cafe/list", "/cafe/detail", "/cafe/ajax_comment_list");
+        		 "/cafe/list", "/cafe/detail", "/cafe/ajax_comment_list",
+        		 "/file/list","/file/download",
+        		 "/gallery/list","/gallery/detail","/gallery/images/*");
 
    }
    

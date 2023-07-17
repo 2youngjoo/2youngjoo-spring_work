@@ -23,7 +23,9 @@
 		</c:choose>
 		
 		<h1>인덱스 페이지 입니다.</h1>
-			<li><a href="${pageContext.request.contextPath }/cafe/list">글 목록 보기</a></li>
+			<li><a href="${pageContext.request.contextPath }/cafe/list">카페 글 목록 보기</a></li>
+			<li><a href="${pageContext.request.contextPath }/file/list">자료실 목록 보기</a></li>
+			<li><a href="${pageContext.request.contextPath }/gallery/list">갤러리 목록 보기</a></li>
 		<h2>공지사항</h2>
 		<ul>
 			<c:forEach var="tmp" items="${requestScope.noticeList }">
