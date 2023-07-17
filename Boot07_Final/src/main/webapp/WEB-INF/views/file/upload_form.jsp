@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<h3>파일 업로드 폼 입니다.</h3>
-		<form action="upload" method="post">
+		<form action="upload" method="post" enctype="multipart/form-data">
 			<div class="mb-2">
 				<label class="control-label" for="title">제목</label>
 				<input class="form-control" type="text" name="title" id="title"/>
