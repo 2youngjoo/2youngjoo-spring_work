@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/gallery/upload_form.jsp</title>
+<title>/views/gallery/upload_form2.jsp</title>
 <style>
    #dropZone{
       width: 400px;
